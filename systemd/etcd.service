@@ -11,7 +11,7 @@ Type=notify
 WorkingDirectory=/var/lib/etcd/
 ExecStart=/opt/k8s/bin/etcd \
   --data-dir=/var/lib/etcd \
-  --name=m7-autocv-gpu01 \
+  --name=kube-master \
   --cert-file=/etc/etcd/cert/etcd.pem \
   --key-file=/etc/etcd/cert/etcd-key.pem \
   --trusted-ca-file=/etc/kubernetes/cert/ca.pem \
@@ -20,12 +20,12 @@ ExecStart=/opt/k8s/bin/etcd \
   --peer-trusted-ca-file=/etc/kubernetes/cert/ca.pem \
   --peer-client-cert-auth \
   --client-cert-auth \
-  --listen-peer-urls=https://172.27.128.150:2380 \
-  --initial-advertise-peer-urls=https://172.27.128.150:2380 \
-  --listen-client-urls=https://172.27.128.150:2379,http://127.0.0.1:2379 \
-  --advertise-client-urls=https://172.27.128.150:2379 \
+  --listen-peer-urls=https://192.168.52.130:2380 \
+  --initial-advertise-peer-urls=https://192.168.52.130:2380 \
+  --listen-client-urls=https://192.168.52.130:2379,http://127.0.0.1:2379 \
+  --advertise-client-urls=https://192.168.52.130:2379 \
   --initial-cluster-token=etcd-cluster-0 \
-  --initial-cluster=m7-autocv-gpu01=https://172.27.128.150:2380,m7-autocv-gpu02=https://172.27.128.149:2380,m7-autocv-gpu03=https://172.27.128.148:2380 \
+  --initial-cluster=kube-master=https://192.168.52.130:2380,kube-node1=https://192.168.52.131:2380,kube-node2=https://192.168.52.132:2380 \
   --initial-cluster-state=new
 Restart=on-failure
 RestartSec=5
