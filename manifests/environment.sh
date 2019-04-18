@@ -4,22 +4,22 @@
 export ENCRYPTION_KEY=$(head -c 32 /dev/urandom | base64)
 
 # 集群各机器 IP 数组
-export NODE_IPS=(172.27.128.150 172.27.128.149 172.27.128.148)
+export NODE_IPS=(192.168.52.130 192.168.52.131 192.168.52.132)
 
 # 集群各 IP 对应的 主机名数组
-export NODE_NAMES=(m7-autocv-gpu01 m7-autocv-gpu02 m7-autocv-gpu03 )
+export NODE_NAMES=(kube-master kube-node1 kube-node2)
 
 # etcd 集群服务地址列表
-export ETCD_ENDPOINTS="https://172.27.128.150:2379,https://172.27.128.149:2379,https://172.27.128.148:2379"
+export ETCD_ENDPOINTS="https://192.168.52.130:2379,https://192.168.52.131:2379,https://192.168.52.132:2379"
 
 # etcd 集群间通信的 IP 和端口
-export ETCD_NODES="m7-autocv-gpu01=https://172.27.128.150:2380,m7-autocv-gpu02=https://172.27.128.149:2380,m7-autocv-gpu03=https://172.27.128.148:2380"
+export ETCD_NODES="kube-master=https://192.168.52.130:2380,kube-node1=https://192.168.52.131:2380,kube-node2=https://192.168.52.132:2380"
 
 # kube-apiserver 的反向代理(kube-nginx)地址端口
 export KUBE_APISERVER="https://127.0.0.1:8443"
 
 # 节点间互联网络接口名称
-export IFACE="eth0"
+export IFACE="ens33"
 
 # etcd 数据目录
 export ETCD_DATA_DIR="/data/k8s/etcd/data"
@@ -36,7 +36,7 @@ export DOCKER_DIR="/data/k8s/docker"
 ## 以下参数一般不需要修改
 
 # TLS Bootstrapping 使用的 Token，可以使用命令 head -c 16 /dev/urandom | od -An -t x | tr -d ' ' 生成
-BOOTSTRAP_TOKEN="41f7e4ba8b7be874fcff18bf5cf41a7c"
+BOOTSTRAP_TOKEN="d0415ca2fdbca432b54bc348c3a2f06e"
 
 # 最好使用 当前未用的网段 来定义服务网段和 Pod 网段
 
