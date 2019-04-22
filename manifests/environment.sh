@@ -3,8 +3,11 @@
 # 生成 EncryptionConfig 所需的加密 key
 export ENCRYPTION_KEY=$(head -c 32 /dev/urandom | base64)
 
-# 集群各机器 IP 数组
+# 集群各机器master IP 数组
 export NODE_IPS=(192.168.52.130 192.168.52.131 192.168.52.132)
+
+#集群各机器worker IP 数组
+export WORKER_NODE_IPS=(192.168.52.140 192.168.52.141)
 
 # 集群各 IP 对应的 主机名数组
 export NODE_NAMES=(kube-master kube-node1 kube-node2)
